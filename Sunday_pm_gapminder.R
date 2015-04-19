@@ -14,20 +14,29 @@ gap.in <- read.table("output/combined_gapMinder.tsv",
                      sep = "\t",
                      header = TRUE)
 
-for (row.number in 1:10){
-  for (col.number in 1:5){
-    print(gap.in[row.number,col.number])
-  }
-}
-  
+gap.in %>%
+  filter(country == "China") %>%
+  select(country, year, pop) %>%
+  group_by(country) %>%
+  summarize(min = min(pop))
 
+#Challange
+#Calculate the mean population for contenient per year for years prior to 1990
 
-gap.in[1:10,1:5]
+gap.in %>%
+  filter(year < 1990) %>%
+  select(continent, year, pop) %>%
+  group_by(continent, year) %>%
+  summarize(mean = mean(pop)) %>%
+  as.data.frame
 
-add.me <- function(x,y){
-  (x + y) * 8
-}
+attach(iris)
+# install tidyr package
+install.packages("tidyr", dependencies = TRUE)
+#load library
+library("tidyr")
 
-add.me(3,4)
+#turn iris dataset form wide into long format
 
-Changes
+iris.long <- gather(iris, "Measurement", "Value", 1:4)
+
