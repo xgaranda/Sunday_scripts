@@ -3,7 +3,11 @@
 # xgaranda@hotmail.com
 # April 19, 2015
 
-install.packages("dplyr", dependencies = TRUE)
+#Install dplyr package and dependencies
+#install.packages("dplyr", dependencies = TRUE)
+
+#Load dplyr library into working environment
+library("dplyr")
 
 #Read in data as tab-delimited
 gap.in <- read.table("output/combined_gapMinder.tsv", 
